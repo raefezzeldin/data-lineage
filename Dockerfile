@@ -16,24 +16,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends gcc
 # Install python dependencies in /.venv
 COPY Pipfile .
 COPY Pipfile.lock .
-RUN pipenv install
 
-
-FROM base AS runtime
-
-# Copy virtual env from python-deps stage
-COPY --from=python-deps /.venv /.venv
-ENV PATH="/.venv/bin:$PATH"
-
-# Create and switch to a new user
-RUN useradd --create-home appuser
-WORKDIR /home/appuser
-USER appuser
-
-# Install application into container
-COPY . .
-
-# Run the executable
-ENTRYPOINT ["python", "-m", "data_lineage"]
-CMD ["10"]
 
