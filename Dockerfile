@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends gcc
 # Install python dependencies in /.venv
 COPY Pipfile .
 COPY Pipfile.lock .
-RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy
+
 
 
 FROM base AS runtime
@@ -36,3 +36,4 @@ COPY . .
 # Run the executable
 ENTRYPOINT ["python", "-m", "data_lineage"]
 CMD ["10"]
+
