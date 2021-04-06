@@ -35,8 +35,8 @@ COPY . .
 
 # Run the executable
 ENTRYPOINT ["python", "-m", "data_lineage"]
-RUN data-lineage --config .lineage.conf init
-RUN data-lineage --config .lineage.conf runserver
+RUN /usr/local/bin/data_lineage --config .lineage.conf init
+RUN /usr/local/bin/data-lineage --config .lineage.conf runserver
 CMD ["10"]
 
 
